@@ -8,35 +8,41 @@
 
     <TextView
         android:id="@+id/operationText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="321dp"
+        android:layout_height="46dp"
         android:layout_marginTop="84dp"
         android:gravity="center"
         android:text="TextView"
         android:textSize="30sp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="-25dp" />
+        app:layout_constraintEnd_toStartOf="@+id/tableLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/resultText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="297dp"
+        android:layout_height="59dp"
         android:gravity="center"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/tableLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tableLayout"
+        app:layout_constraintHorizontal_bias="0.432"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/operationText"
-        tools:layout_editor_absoluteX="1dp" />
+        app:layout_constraintVertical_bias="0.279" />
 
     <TableLayout
         android:id="@+id/tableLayout"
-        android:layout_width="417dp"
-        android:layout_height="484dp"
+        android:layout_width="393dp"
+        android:layout_height="317dp"
         android:gravity="top"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.272"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintHorizontal_bias="0.988"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.914">
 
         <TableRow
             android:layout_width="match_parent"
@@ -50,7 +56,9 @@
                 android:layout_margin="3sp"
                 android:onClick="onNumberClick"
                 android:text="1"
-                android:textSize="36sp" />
+                android:textSize="36sp"
+                tools:layout_editor_absoluteX="392dp"
+                tools:layout_editor_absoluteY="89dp" />
 
             <Button
                 android:id="@+id/two"
@@ -59,7 +67,9 @@
                 android:layout_margin="3sp"
                 android:onClick="onNumberClick"
                 android:text="2"
-                android:textSize="36sp" />
+                android:textSize="36sp"
+                tools:layout_editor_absoluteX="487dp"
+                tools:layout_editor_absoluteY="89dp" />
 
             <Button
                 android:id="@+id/three"
@@ -68,14 +78,18 @@
                 android:layout_margin="3sp"
                 android:onClick="onNumberClick"
                 android:text="3"
-                android:textSize="36sp" />
+                android:textSize="36sp"
+                tools:layout_editor_absoluteX="581dp"
+                tools:layout_editor_absoluteY="89dp" />
 
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center">
+            android:gravity="center"
+            tools:layout_editor_absoluteX="334dp"
+            tools:layout_editor_absoluteY="161dp">
 
             <Button
                 android:id="@+id/four"
@@ -84,7 +98,9 @@
                 android:layout_margin="3sp"
                 android:onClick="onNumberClick"
                 android:text="4"
-                android:textSize="36sp" />
+                android:textSize="36sp"
+                tools:layout_editor_absoluteX="392dp"
+                tools:layout_editor_absoluteY="164dp" />
 
             <Button
                 android:id="@+id/five"
@@ -93,7 +109,9 @@
                 android:layout_margin="3sp"
                 android:onClick="onNumberClick"
                 android:text="5"
-                android:textSize="36sp" />
+                android:textSize="36sp"
+                tools:layout_editor_absoluteX="487dp"
+                tools:layout_editor_absoluteY="164dp" />
 
             <Button
                 android:id="@+id/six"
@@ -102,13 +120,18 @@
                 android:layout_margin="3sp"
                 android:onClick="onNumberClick"
                 android:text="6"
-                android:textSize="36sp" />
+                android:textSize="36sp"
+                tools:layout_editor_absoluteX="581dp"
+                tools:layout_editor_absoluteY="164dp" />
+
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center">
+            android:gravity="center"
+            tools:layout_editor_absoluteX="334dp"
+            tools:layout_editor_absoluteY="235dp">
 
             <Button
                 android:id="@+id/seven"
@@ -141,7 +164,9 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center">
+            android:gravity="center"
+            tools:layout_editor_absoluteX="334dp"
+            tools:layout_editor_absoluteY="309dp">
 
             <Button
                 android:id="@+id/zero"
