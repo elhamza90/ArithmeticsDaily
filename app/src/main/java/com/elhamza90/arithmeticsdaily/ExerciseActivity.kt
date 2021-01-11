@@ -1,13 +1,19 @@
 package com.elhamza90.arithmeticsdaily
 
 import android.app.AlertDialog
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import java.util.concurrent.TimeUnit
 
 class ExerciseActivity : AppCompatActivity() {
@@ -15,12 +21,19 @@ class ExerciseActivity : AppCompatActivity() {
     var difficulty: String? = ""
     var answer: Int = 0
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_exercise)
+
+
+
         // Get Intent DATA
         allowedOperations = intent.getStringExtra(OPERATIONS)
         difficulty = intent.getStringExtra(DIFFICULTY)
+
+
 
         generateOperation()
     }
@@ -113,7 +126,12 @@ class ExerciseActivity : AppCompatActivity() {
         val res = (resultTextView.text as String).toIntOrNull()
         if (res == answer) {
             resultTextView.setTextColor(Color.parseColor("#0000EE"))
+
             generateOperation()
         }
     }
+
+
+
+
 }
