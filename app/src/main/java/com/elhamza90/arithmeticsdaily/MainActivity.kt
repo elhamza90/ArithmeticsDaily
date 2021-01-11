@@ -53,4 +53,9 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun onSetAlarmClick(view:View) {
+        val intent = Intent(this, AlarmActivity::class.java)
+        startActivity(intent)
+    }
+
 }
