@@ -8,13 +8,19 @@ import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
+import kotlinx.coroutines.*
+import java.util.*
 import java.util.concurrent.TimeUnit
+import kotlin.concurrent.schedule
+const val TAG = "exercise_act"
 
 class ExerciseActivity : AppCompatActivity() {
     var nbrOperations: Int = 2
@@ -22,14 +28,11 @@ class ExerciseActivity : AppCompatActivity() {
     var difficulty: String? = ""
     var answer: Int = 0
     var nbrCorrect: Int = 0
-
-
+    var defaultResultTvColor: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_exercise)
-
-
 
         // Get Intent DATA
         allowedOperations = intent.getStringExtra(OPERATIONS)
@@ -42,11 +45,15 @@ class ExerciseActivity : AppCompatActivity() {
     }
 
     fun generateOperation() {
+
+        if (nbrOperations == 0) {
+                    this.finish()
+        }
+
         var nbr1: Int = 0
         var nbr2: Int = 0
         val randomOp = allowedOperations?.get((0..((allowedOperations?.length)?.minus(1) ?:0 )).random())
-        //TimeUnit.SECONDS.sleep(1L)
-        findViewById<TextView>(R.id.resultText).setTextColor(Color.parseColor("#FFFFFF"))
+
         when (randomOp) {
             '+' -> {
                 nbr1 = when(difficulty) {
@@ -120,27 +127,38 @@ class ExerciseActivity : AppCompatActivity() {
         view as Button
         val resultTextView = findViewById<TextView>(R.id.resultText)
         val nbrCorrectTv = findViewById<TextView>(R.id.nbrCorrectTv)
+        val res_str: String
         if (view.text != "X") {
             val prevVal = resultTextView.text
             val btnVal = view.text
-            resultTextView.text = "$prevVal$btnVal"
-        } else {
-            resultTextView.text = ""
-        }
-        val res = (resultTextView.text as String).toIntOrNull()
-        if (res == answer) {
-            nbrCorrect++
-            nbrCorrectTv.text = nbrCorrect.toString()
-            if (nbrCorrect == 1) {
-                nbrCorrectTv.setTextColor(Color.parseColor("#FFC107"))
-            }
+            res_str = "$prevVal$btnVal"
 
-            nbrOperations--;
-            if (nbrOperations == 0) {
-                this.finish()
-            }
-            generateOperation()
+        } else {
+            res_str = ""
         }
+        val res = res_str.toIntOrNull()
+        GlobalScope.launch ( Dispatchers.Main ) {
+
+            resultTextView.text = res_str
+
+            if (res == answer) {
+                nbrCorrect++
+                nbrCorrectTv.text = nbrCorrect.toString()
+                if (nbrCorrect == 1) {
+                    nbrCorrectTv.setTextColor(Color.parseColor("#FFC107"))
+                    defaultResultTvColor = resultTextView.textColors.defaultColor
+                }
+                resultTextView.setTextColor(Color.parseColor("#FFC107"))
+
+                nbrOperations--;
+
+                delay(1000L)
+                resultTextView.setTextColor(defaultResultTvColor)
+
+                generateOperation()
+            }
+        }
+
     }
 
 

@@ -8,29 +8,30 @@
 
     <TextView
         android:id="@+id/operationText"
-        android:layout_width="321dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="84dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="TextView"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toStartOf="@+id/tableLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/resultText"
-        android:layout_width="297dp"
-        android:layout_height="59dp"
-        android:gravity="center"
-        android:textColor="#FFFFFF"
+        android:text="321 - 234 = "
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tableLayout"
-        app:layout_constraintHorizontal_bias="0.432"
+        app:layout_constraintHorizontal_bias="0.17"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/operationText"
-        app:layout_constraintVertical_bias="0.279" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.235" />
+
+    <TextView
+        android:id="@+id/resultText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tableLayout"
+        app:layout_constraintStart_toEndOf="@+id/operationText"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.23000002"
+        tools:text="321" />
 
     <TableLayout
         android:id="@+id/tableLayout"
@@ -201,9 +202,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:text="0"
-        android:textColor="#E6E6E6"
         android:textSize="24sp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/nbrOpsTv"
         app:layout_constraintHorizontal_bias="0.98"
@@ -216,7 +215,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="/5"
-        android:textColor="#E6E6E6"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tableLayout"
