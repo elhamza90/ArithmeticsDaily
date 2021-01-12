@@ -17,6 +17,7 @@ import androidx.core.app.NotificationManagerCompat
 import java.util.concurrent.TimeUnit
 
 class ExerciseActivity : AppCompatActivity() {
+    var nbrOperations: Int = 2
     var allowedOperations: String? = ""
     var difficulty: String? = ""
     var answer: Int = 0
@@ -32,7 +33,7 @@ class ExerciseActivity : AppCompatActivity() {
         // Get Intent DATA
         allowedOperations = intent.getStringExtra(OPERATIONS)
         difficulty = intent.getStringExtra(DIFFICULTY)
-
+        nbrOperations = intent.getIntExtra(NBR_OPERATIONS, 1)
 
 
         generateOperation()
@@ -126,7 +127,10 @@ class ExerciseActivity : AppCompatActivity() {
         val res = (resultTextView.text as String).toIntOrNull()
         if (res == answer) {
             resultTextView.setTextColor(Color.parseColor("#0000EE"))
-
+            nbrOperations--;
+            if (nbrOperations == 0) {
+                this.finish()
+            }
             generateOperation()
         }
     }

@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat
 
 const val OPERATIONS="ops"
 const val DIFFICULTY="diff"
+const val NBR_OPERATIONS="nbr_ops"
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onStartClick(view:View) {
+
         var operations = ""
         val addition = findViewById<CheckBox>(R.id.additionCheckbox).isChecked
         if (addition) {
@@ -43,10 +45,13 @@ class MainActivity : AppCompatActivity() {
             operations += "÷"
         }
         if(operations.length == 0) {
-            val builder = AlertDialog.Builder(view.context)
-            builder.setTitle("Erreur")
-            builder.setMessage("Vous devez selectioner au moins une operation")
-            builder.show()
+            showError(view, "Vous devez selectioner au moins une operation")
+            return
+        }
+
+        val nbrOperations = findViewById<EditText>(R.id.nbrOperationsTextInput).text.toString().toIntOrNull()
+        if (nbrOperations == null) {
+            showError(view, "Nombre d'operations incorrect")
             return
         }
 
@@ -54,11 +59,24 @@ class MainActivity : AppCompatActivity() {
         val checkedDifficultyRadio = findViewById<RadioButton>(checkedDifficultyId)
         val difficulty = checkedDifficultyRadio.text
 
+
+
         val intent = Intent(this, ExerciseActivity::class.java).apply {
             putExtra(OPERATIONS, operations)
             putExtra(DIFFICULTY, difficulty)
+            putExtra(NBR_OPERATIONS, nbrOperations)
         }
         startActivity(intent)
+
+
+    }
+
+    fun showError(view: View, errorMsg: String) {
+        val builder = AlertDialog.Builder(view.context)
+        builder.setTitle("Erreur")
+        builder.setMessage(errorMsg)
+        builder.show()
+        return
     }
 
     fun onSetAlarmClick(view:View) {

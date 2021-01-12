@@ -41,8 +41,9 @@ class AlarmReceiver: BroadcastReceiver() {
         val intent = Intent(ctx, ExerciseActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }.apply {
-            putExtra(OPERATIONS, "+-")
+            putExtra(OPERATIONS, "+-x")
             putExtra(DIFFICULTY, "Facile")
+            putExtra(NBR_OPERATIONS, 3)
         }
         val pendingIntent: PendingIntent = PendingIntent.getActivity(ctx, 0, intent, 0)
 
