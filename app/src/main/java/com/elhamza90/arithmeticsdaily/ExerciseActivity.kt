@@ -21,6 +21,7 @@ class ExerciseActivity : AppCompatActivity() {
     var allowedOperations: String? = ""
     var difficulty: String? = ""
     var answer: Int = 0
+    var nbrCorrect: Int = 0
 
 
 
@@ -34,7 +35,8 @@ class ExerciseActivity : AppCompatActivity() {
         allowedOperations = intent.getStringExtra(OPERATIONS)
         difficulty = intent.getStringExtra(DIFFICULTY)
         nbrOperations = intent.getIntExtra(NBR_OPERATIONS, 1)
-
+        val nbrOpsTv = findViewById<TextView>(R.id.nbrOpsTv)
+        nbrOpsTv.text = "/$nbrOperations"
 
         generateOperation()
     }
@@ -117,6 +119,7 @@ class ExerciseActivity : AppCompatActivity() {
     fun onNumberClick(view: View) {
         view as Button
         val resultTextView = findViewById<TextView>(R.id.resultText)
+        val nbrCorrectTv = findViewById<TextView>(R.id.nbrCorrectTv)
         if (view.text != "X") {
             val prevVal = resultTextView.text
             val btnVal = view.text
@@ -126,7 +129,12 @@ class ExerciseActivity : AppCompatActivity() {
         }
         val res = (resultTextView.text as String).toIntOrNull()
         if (res == answer) {
-            resultTextView.setTextColor(Color.parseColor("#0000EE"))
+            nbrCorrect++
+            nbrCorrectTv.text = nbrCorrect.toString()
+            if (nbrCorrect == 1) {
+                nbrCorrectTv.setTextColor(Color.parseColor("#FFC107"))
+            }
+
             nbrOperations--;
             if (nbrOperations == 0) {
                 this.finish()
